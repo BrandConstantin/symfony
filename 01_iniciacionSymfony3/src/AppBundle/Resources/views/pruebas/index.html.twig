@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+{% block container %}
+    {{parent()}}
+    {{texto}}
+    <br/>
+    {{frutas.manzana}}
+    <br/>
+    {% if frutas.manzana starts with 'd' %}
+        <h3>{{frutas.manzana}}</h3>
+    {% endif %}
+    <br/>
+    {% set variable = "hola twig" %}
+    {{variable}}
+    <br/>
+    <ul>
+        {% for producto in productos %}
+            <li>{{producto .producto}} - {{producto.precio}}</li>
+        {% endfor %}
+    </ul>
+    <br/>
+    <p>Con if
+    {% if productos|length > 4 %}
+        <ul>
+            {% for producto in productos %}
+                <li>{{producto .producto}} - {{producto.precio}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <br/>
+    {% set fecha = date("-2 days", "Europe/Madrid") %}
+    {{dump(fecha)}}
+    <br/>
+    {{include('AppBundle:pruebas:partial.html.twig')}};
+    <br/>
+    {{max(frutas)}}
+    {{random(100)}}
+    <br/>
+    {% for i in range(0, 10, 2) %}
+        {{i}} 
+    {% endfor %}
+{% endblock %}
