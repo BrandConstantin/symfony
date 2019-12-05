@@ -38,4 +38,8 @@
     {% for i in range(0, 10, 2) %}
         {{i}} 
     {% endfor %}
+    <br/>
+    {{generateTable(productos) | raw}}
+    <br/>
+    {{"hola filter vista " | addText(45)}}
 {% endblock %}
