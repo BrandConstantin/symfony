@@ -8,5 +8,37 @@ pruebas_index:
       lang: es|en|fr
 
 pruebas_create:
-  path: /pruebas/create
-  defaults: { _controller: AppBundle:Pruebas:create }      
+    path: /pruebas/create
+    defaults: { _controller: AppBundle:Pruebas:create}
+    
+pruebas_read:
+    path: /pruebas/read
+    defaults: { _controller: AppBundle:Pruebas:read}
+
+pruebas_update:
+    path: /pruebas/update/{id}/{titulo}/{descripcion}/{precio}
+    defaults: { _controller: AppBundle:Pruebas:update}
+
+pruebas_delete:
+    path: /pruebas/delete/{id}
+    defaults: { _controller: AppBundle:Pruebas:delete}
+
+pruebas_native:
+    path: /pruebas/native
+    defaults: { _controller: AppBundle:Pruebas:nativeSql} 
+    
+pruebas_dql:
+    path: /pruebas/dql
+    defaults: { _controller: AppBundle:Pruebas:dql}  
+
+pruebas_queryBuilder:
+    path: /pruebas/queryBuilder
+    defaults: { _controller: AppBundle:Pruebas:queryBuilder}
+    
+pruebas_form:
+    path: /pruebas/form
+    defaults: { _controller: AppBundle:Pruebas:form}
+
+pruebas_validate_email:
+    path: /pruebas/validar-email/{email}
+    defaults: { _controller: AppBundle:Pruebas:validarEmail}
