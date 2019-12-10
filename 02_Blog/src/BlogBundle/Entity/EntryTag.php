@@ -40,7 +40,7 @@ class EntryTag
      *
      * @return EntryTag
      */
-    public function setEntry(\BlogBundle\Entity\Entries $entry = null)
+    public function setEntry(\BlogBundle\Entity\Entry $entry = null)
     {
         $this->entry = $entry;
 
@@ -64,7 +64,7 @@ class EntryTag
      *
      * @return EntryTag
      */
-    public function setTag(\BlogBundle\Entity\Tags $tag = null)
+    public function setTag(\BlogBundle\Entity\Tag $tag = null)
     {
         $this->tag = $tag;
 

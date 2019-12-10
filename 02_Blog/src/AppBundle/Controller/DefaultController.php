@@ -11,7 +11,7 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexActionOld(Request $request)
     {
         /*$em = $this->getDoctrine()->getEntityManager();
         $entry_repo = $em->getRepository("BlogBundle:Entry");
@@ -62,8 +62,12 @@ class DefaultController extends Controller
 
         die();
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ));
+        // return $this->render('default/index.html.twig', array(
+        //     'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        // ));
+    }
+
+    public function indexAction(){
+        return $this->render("BlogBundle:Default:index.html.twig");
     }
 }
