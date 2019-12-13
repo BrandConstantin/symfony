@@ -1,13 +1,14 @@
 <?php
 
 namespace BlogBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Entry
  */
-class Entry
-{
+class Entry {
+
     /**
      * @var integer
      */
@@ -42,15 +43,27 @@ class Entry
      * @var \BlogBundle\Entity\Users
      */
     private $user;
+    protected $entryTag;
 
+    public function __construct() {
+        $this->entryTag = new ArrayCollections;
+    }
+
+    public function addEntryTag(\BlogBundle\Entity\Tag $tag) {
+        $this->entryTag[] = $tag;
+        return $this;
+    }
+
+    public function getEntryTag() {
+        return $this->entryTag;
+    }
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -61,8 +74,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -73,8 +85,7 @@ class Entry
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -85,8 +96,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setContent($content)
-    {
+    public function setContent($content) {
         $this->content = $content;
 
         return $this;
@@ -97,8 +107,7 @@ class Entry
      *
      * @return string
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
 
@@ -109,8 +118,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
@@ -121,8 +129,7 @@ class Entry
      *
      * @return string
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -133,8 +140,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setImage($image)
-    {
+    public function setImage($image) {
         $this->image = $image;
 
         return $this;
@@ -145,8 +151,7 @@ class Entry
      *
      * @return string
      */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
 
@@ -157,8 +162,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setCategory(\BlogBundle\Entity\Category $category = null)
-    {
+    public function setCategory(\BlogBundle\Entity\Category $category = null) {
         $this->category = $category;
 
         return $this;
@@ -169,8 +173,7 @@ class Entry
      *
      * @return \BlogBundle\Entity\Categories
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 
@@ -181,8 +184,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setUser(\BlogBundle\Entity\User $user = null)
-    {
+    public function setUser(\BlogBundle\Entity\User $user = null) {
         $this->user = $user;
 
         return $this;
@@ -193,25 +195,8 @@ class Entry
      *
      * @return \BlogBundle\Entity\Users
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
-    protected $entryTag;
-
-    public function __construct(){
-        $this->entryTag = new ArrayCollections;
-    }
-
-    public function setEntryTag(\BlogBundle\Entity\Tag $tag){
-        $this->entryTag[] = $tag;
-
-        return $this;
-    }
-
-    public function getEntryTag(){
-        return $this->entryTag;
-    }
 }
-

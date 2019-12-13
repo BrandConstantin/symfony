@@ -1,6 +1,7 @@
 <?php
 
 namespace BlogBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Tag
@@ -21,7 +22,16 @@ class Tag
      * @var string
      */
     private $description = 'NULL';
-
+    
+    protected $entryTag;
+    
+    public function __construct() {
+        $this->entryTag = new ArrayCollection();
+    }
+    
+    public function getEntryTag(){
+        $this->entryTag;
+    }
 
     /**
      * Get id
@@ -79,14 +89,6 @@ class Tag
     public function getDescription()
     {
         return $this->description;
-    }
-
-    protected $entryTag;
-    public function __construct(){
-        $this->entryTag = new \Doctrine\Common\Collections\ArrayCollections();
-    }
-    public function getEntryTag(){
-        return $this->entryTag;
     }
 }
 
