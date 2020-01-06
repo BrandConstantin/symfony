@@ -1,4 +1,4 @@
-blog_index:
+blog_homepage:
     path: /
     defaults: { _controller: BlogBundle:Default:index }
 
@@ -28,37 +28,37 @@ blog_delete_tag:
     path: /tags/delete/{id}
     defaults: { _controller: BlogBundle:Tag:delete }
     
-# blog_index_category:
-#     path: /categories
-#     defaults: { _controller: BlogBundle:Category:index }
+blog_index_category:
+    path: /categories
+    defaults: { _controller: BlogBundle:Category:index }
     
-# blog_add_category:
-#     path: /categories/add
-#     defaults: { _controller: BlogBundle:Category:add }
+blog_add_category:
+    path: /categories/add
+    defaults: { _controller: BlogBundle:Category:add }
     
-# blog_delete_category:
-#     path: /categories/delete/{id}
-#     defaults: { _controller: BlogBundle:Category:delete }
+blog_delete_category:
+    path: /categories/delete/{id}
+    defaults: { _controller: BlogBundle:Category:delete }
 
-# blog_edit_category:
-#     path: /categories/edit/{id}
-#     defaults: { _controller: BlogBundle:Category:edit }
+blog_edit_category:
+     path: /categories/edit/{id}
+     defaults: { _controller: BlogBundle:Category:edit }
     
 # blog_read_category:
 #     path: /category/{id}/{page}
 #     defaults: { _controller: BlogBundle:Category:category, page:1 }
     
-# blog_add_entry:
-#     path: /entries/add
-#     defaults: { _controller: BlogBundle:Entry:add }
+blog_add_entry:
+     path: /entries/add
+     defaults: { _controller: BlogBundle:Entry:add }
     
-# blog_delete_entry:
-#     path: /entries/delete/{id}
-#     defaults: { _controller: BlogBundle:Entry:delete }
+blog_delete_entry:
+     path: /entries/delete/{id}
+     defaults: { _controller: BlogBundle:Entry:delete }
     
-# blog_edit_entry:
-#     path: /entries/edit/{id}
-#     defaults: { _controller: BlogBundle:Entry:edit }
+blog_edit_entry:
+     path: /entries/edit/{id}
+     defaults: { _controller: BlogBundle:Entry:edit }
     
 # blog_lang:
 #     path: /lang/{_locale}

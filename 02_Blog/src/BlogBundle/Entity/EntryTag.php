@@ -13,12 +13,12 @@ class EntryTag
     private $id;
 
     /**
-     * @var \BlogBundle\Entity\Entries
+     * @var \BlogBundle\Entity\Entry
      */
     private $entry;
 
     /**
-     * @var \BlogBundle\Entity\Tags
+     * @var \BlogBundle\Entity\Tag
      */
     private $tag;
 
