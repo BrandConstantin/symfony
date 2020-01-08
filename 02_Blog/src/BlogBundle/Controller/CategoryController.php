@@ -34,6 +34,7 @@ class CategoryController extends Controller {
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
                 $em = $this->getDoctrine()->getEntityManager();
 
                 $category = new Category();
@@ -72,7 +73,7 @@ class CategoryController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute("blog_index_catogory");
+        return $this->redirectToRoute("blog_index_category");
     }
 
     public function editAction(Request $request, $id) {
@@ -108,6 +109,28 @@ class CategoryController extends Controller {
 
         return $this->render("BlogBundle:Category:edit.html.twig", array(
                     "form" => $form->createView()
+        ));
+    }
+
+    public function categoryAction($id, $page) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $category_repo = $em->getRepository("BlogBundle:Category");
+        $category = $category_repo->find($id);
+
+        $entry_repo = $em->getRepository("BlogBundle:Entry");
+        $entries = $entry_repo->getCategoryEntries($category, 5, $page);
+
+        $totalItems = count($entries);
+        $pagesCount = ceil($totalItems / 5);
+
+        return $this->render("BlogBundle:Category:category.html.twig", array(
+                    "category" => $category,
+                    "categories" => $category_repo->findAll(),
+                    "entries" => $entries,
+                    "totalItems" => $totalItems,
+                    "pagesCount" => $pagesCount,
+                    "page" => $page,
+                    "page_m" => $page
         ));
     }
 

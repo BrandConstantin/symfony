@@ -1,6 +1,6 @@
 blog_homepage:
-    path: /
-    defaults: { _controller: BlogBundle:Default:index }
+    path:     /home/{page}
+    defaults: { _controller: BlogBundle:Entry:index, page:1 }
 
 login:
     path: /login
@@ -44,9 +44,9 @@ blog_edit_category:
      path: /categories/edit/{id}
      defaults: { _controller: BlogBundle:Category:edit }
     
-# blog_read_category:
-#     path: /category/{id}/{page}
-#     defaults: { _controller: BlogBundle:Category:category, page:1 }
+blog_read_category:
+     path: /category/{id}/{page}
+     defaults: { _controller: BlogBundle:Category:category, page:1 }
     
 blog_add_entry:
      path: /entries/add
@@ -60,10 +60,10 @@ blog_edit_entry:
      path: /entries/edit/{id}
      defaults: { _controller: BlogBundle:Entry:edit }
     
-# blog_lang:
-#     path: /lang/{_locale}
-#     defaults: { _controller: BlogBundle:Default:lang }
+blog_lang:
+     path: /lang/{_locale}
+     defaults: { _controller: BlogBundle:Default:lang }
 
-# blog_homepage:
-#     path:     /home/{page}
-#     defaults: { _controller: BlogBundle:Entry:index, page:1 }
+blog_homepage:
+     path:     /home/{page}
+     defaults: { _controller: BlogBundle:Entry:index, page:1 }
