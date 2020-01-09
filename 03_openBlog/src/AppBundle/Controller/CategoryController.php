@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends Controller
 {
@@ -29,6 +30,6 @@ class CategoryController extends Controller
      */
     public function editAction(Request $request, $slug)
     {
-       echo 'category_edit';
+       return new Response('<html><body>Category: '.$slug.'</body></html>');
     }
 }
