@@ -26,36 +26,4 @@ class DefaultController extends Controller
     {
         echo 'list';
     }
-
-    /**
-     * @Route("/category/{page}", name="category")
-     */
-    public function categoryAction(Request $request, $page)
-    {
-        echo 'category';
-    }
-
-    /**
-     * @Route("/{slug}", name="post_view")
-     */
-    public function postViewAction(Request $request, $slug)
-    {
-        echo 'post_view';
-    }
-
-    /**
-     * @Route("/post/new", name="post_new")
-     */
-    public function postNewAction(Request $request)
-    {
-        echo 'post_new';
-    }
-
-    /**
-     * @Route("/post/edit/{slug}", name="post_edit")
-     */
-    public function postEditAction(Request $request, $slug)
-    {
-       echo 'post_edit';
-    }
 }
