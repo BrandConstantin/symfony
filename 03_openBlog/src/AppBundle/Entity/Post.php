@@ -47,9 +47,9 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="reg_date")
+     * @ORM\Column(name="reg_date", type="datetime")
      */
-    private $regdate;
+    private $regDate;
 
     /**
      * Get id
@@ -178,6 +178,8 @@ class Post
     public function __construct(){
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
+
+        $this->regDate = new \DateTime();
     }
 
     /**
