@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Post
@@ -131,5 +132,167 @@ class Post
     public function getRegdate()
     {
         return $this->regdate;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Post
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="post")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="posts")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist"})
+     */
+    protected $comments;
+
+    public function __construct(){
+        $this->categories = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Post
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Post
+     */
+    public function addPost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \AppBundle\Entity\Post $post
+     */
+    public function removePost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Post
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Post
+     */
+    public function addCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \AppBundle\Entity\Category $category
+     */
+    public function removeCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
