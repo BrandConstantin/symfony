@@ -5,15 +5,20 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Post;
 
 class PostController extends Controller
 {
-        /**
-     * @Route("/{slug}", name="post_view")
+    /**
+     * @Route("/post/list/{page}", name="list")
      */
-    public function viewAction(Request $request, $slug)
+    public function listAction(Request $request, $page)
     {
-        echo 'post_view';
+        $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
+
+        $posts = $postRepository->findAll();
+        return new Response('List '.$posts);
     }
 
     /**
@@ -21,14 +26,37 @@ class PostController extends Controller
      */
     public function newAction(Request $request)
     {
-        echo 'post_new';
+        $post = new Post();
+        $post->setTitle('Symfony 3');
+        $post->setSlug('symfony-3');
+        $post->setDescription('Lorem ipsum dolor');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($post);
+        $em->flush();
+
+        return new Response('Created post id '.$post->getSlug());
     }
 
     /**
-     * @Route("/post/edit/{slug}", name="post_edit")
+     * @Route("/post/{id}", name="post_view")
      */
-    public function editAction(Request $request, $slug)
+    public function viewAction(Request $request, $id)
     {
-       echo 'post_edit';
+        $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
+
+        $post = $postRepository->find($id);
+        return new Response('Post with slug '.$post->getSlug());
+    }
+
+    /**
+     * @Route("/post/edit/{id}", name="post_edit")
+     */
+    public function editAction(Request $request, $id)
+    {
+       $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
+
+       $post = $postRepository->find($id);
+       return new Response('Post for edit with slug '.$post->getSlug());
     }
 }
