@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllByTitle($title){
+        $query = $this->createQueryBuilder('p')
+             ->where('p.title LIKE :title')
+             ->setParameter('title', '%'.$title.'%')
+             ->orderBy('p.title', 'asc')
+             ->getQuery();
+ 
+        return $query->getResult();
+    }
 }
