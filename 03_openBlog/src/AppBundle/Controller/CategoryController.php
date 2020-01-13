@@ -6,29 +6,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
-        /**
-     * @Route("/{slug}", name="post_view")
+    /**
+     * @Route("/category/{page}", name="category", requirements={"page": "\d+"})
      */
-    public function viewAction(Request $request, $slug)
+    public function listAction(Request $request, $page)
     {
-        echo 'post_view';
+        echo 'category';
     }
 
     /**
-     * @Route("/post/new", name="post_new")
+     * @Route("/category/new", name="category_new")
      */
     public function newAction(Request $request)
     {
-        echo 'post_new';
+        echo 'category_new';
     }
 
     /**
-     * @Route("/post/edit/{slug}", name="post_edit")
+     * @Route("/category/edit/{slug}", name="category_edit")
      */
     public function editAction(Request $request, $slug)
     {
-       echo 'post_edit';
+       echo 'category_edit';
     }
 }
