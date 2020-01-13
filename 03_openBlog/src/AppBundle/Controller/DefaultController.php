@@ -12,7 +12,7 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+   /* public function indexAction(Request $request)
     {
         //redirección
     //    $url = $this->generateUrl('category_edit', array('slug' => 'symfony_3'));
@@ -39,6 +39,16 @@ class DefaultController extends Controller
         // if(!$product){
             throw $this->createNotFoundException('El producto no existe');
         // }
+    }*/
+
+    public function indexAction(Request $request)
+    {
+        return $this->render(
+            'default/index.html.twig',
+            array(
+                'base_dir' => 'Symfony Cours with openwebinars.net'
+            )
+        );
     }
 
     /**
