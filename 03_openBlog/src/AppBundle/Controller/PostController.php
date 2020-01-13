@@ -59,4 +59,14 @@ class PostController extends Controller
        $post = $postRepository->find($id);
        return new Response('Post for edit with slug '.$post->getSlug());
     }
+
+    /**
+     * @Route("/post/search/{title}", name="search")
+     */
+    public function searchAction(Request $request, $title)
+    {
+        $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $posts = $postRepository->findAllByTitle($title);
+        print_r($posts);
+    }
 }
