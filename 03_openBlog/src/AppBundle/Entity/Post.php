@@ -4,12 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
@@ -50,6 +52,13 @@ class Post
      * @ORM\Column(name="reg_date", type="datetime")
      */
     private $regDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="mod_date", type="datetime")
+     */
+    private $modDate;
 
     /**
      * Get id
@@ -330,5 +339,37 @@ class Post
     public function getComments()
     {
         return $this->comments;
+    }
+
+   /**
+     * @ORM\PreUpdate
+     */
+    public function setModificationDate()
+    {
+        $this->modDate = new \DateTime();
+    }
+
+    /**
+     * Set modDate
+     *
+     * @param \DateTime $modDate
+     *
+     * @return Post
+     */
+    public function setModDate($modDate)
+    {
+        $this->modDate = $modDate;
+
+        return $this;
+    }
+
+    /**
+     * Get modDate
+     *
+     * @return \DateTime
+     */
+    public function getModDate()
+    {
+        return $this->modDate;
     }
 }
