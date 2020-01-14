@@ -27,9 +27,17 @@ class PostController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
-        $post->setTitle('Symfony 3');
-        $post->setSlug('symfony-3');
+        $post->setTitle('Symfony 4');
+        $post->setSlug('symfony-4');
         $post->setDescription('Lorem ipsum dolor');
+
+        $validator = $this->get('validator');
+        $errors = $validator->validate($post, null, array('edit'));
+
+        if(count($errors > 0)){
+            $errorsString = (string) $errors;
+            return new Response($errorsString);
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($post);
