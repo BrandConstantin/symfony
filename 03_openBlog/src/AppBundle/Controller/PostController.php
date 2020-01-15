@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Post;
+use AppBundle\Form\PostType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostController extends Controller
@@ -28,18 +29,16 @@ class PostController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
-        // $post->setTitle('Symfony 4');
-        // $post->setSlug('symfony-4');
-        // $post->setDescription('Lorem ipsum dolor');
 
-        $form = $this->createFormBuilder($post)
-            ->add('title', null, array())
-            ->add('slug')
-            ->add('description')
-            ->add('save', SubmitType::class)
-            ->getForm();
+        $form = $this->createForm(PostType::class, $post, array(
+            // 'action' => $this->generateUrl('post_new'),
+            // 'method' => 'GET'
+        ));
 
         $form->handleRequest($request);
+
+        $formData = $form->getData();  //para trabajar de forma separada del propio formulario con estos datos
+        $date = $form['dueDate']->getData();
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
