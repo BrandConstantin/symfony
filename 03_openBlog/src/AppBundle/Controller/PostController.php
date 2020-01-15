@@ -7,39 +7,49 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Post;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostController extends Controller
 {
     /**
-     * @Route("/post/list/{page}", name="list")
+     * @Route("/post/list/", name="list")
      */
-    public function listAction(Request $request, $page)
+    public function listAction(Request $request)
     {
         $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
 
         $posts = $postRepository->findAll();
-        return new Response('List '.$posts);
+        return new Response('List ');
     }
 
     /**
-     * @Route("/post/new", name="post_new")
+     * @Route("/post/new/", name="post_new")
      */
     public function newAction(Request $request)
     {
         $post = new Post();
-        $post->setTitle('Symfony 4');
-        $post->setSlug('symfony-4');
-        $post->setDescription('Lorem ipsum dolor');
+        // $post->setTitle('Symfony 4');
+        // $post->setSlug('symfony-4');
+        // $post->setDescription('Lorem ipsum dolor');
 
         $form = $this->createFormBuilder($post)
-            ->add('title', 'text')
-            ->add('slug', 'submit')
-            ->add('description', 'submit')
-            ->add('save', 'submit')
+            ->add('title', null, array())
+            ->add('slug')
+            ->add('description')
+            ->add('save', SubmitType::class)
             ->getForm();
 
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+            return $this->redirect($this->generateUrl('list'));
+        }
+
         return $this->render('post/new.html.twig', array(
-            'form' => $form->creteView(),
+            'form' => $form->createView(),
         ));
 
         $validator = $this->get('validator');
