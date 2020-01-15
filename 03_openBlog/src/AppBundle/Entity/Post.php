@@ -61,7 +61,7 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="mod_date", type="datetime")
+     * @ORM\Column(name="mod_date", type="datetime", nullable=true)
      */
     private $modDate;
 
