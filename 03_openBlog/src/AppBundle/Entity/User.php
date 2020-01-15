@@ -27,22 +27,22 @@ class User
      * @Assert\Email()
      * @Assert\NotBlank(groups={"registration"})
      * 
-     * @ORM\Column(type="string", length=255, name="email")
+     * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
      * @Assert\NotBlank(groups={"registration"})
-     * @Assert\Length(min=7, groups({"regostratopm"}))
+     * @Assert\Length(min=7, groups={"registration"})
      * 
-     * @ORM\Column(type="string", length=255, name="password")
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
 
     /**
      * @Assert\Length(min="2")
      * 
-     * @ORM\Column(type="string", length=255, name="city", nullable=true)
+     * @ORM\Column(name="city", type="string", length=255,  nullable=true)
      */
     private $city;
 
