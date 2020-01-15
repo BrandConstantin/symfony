@@ -31,10 +31,21 @@ class PostController extends Controller
         $post->setSlug('symfony-4');
         $post->setDescription('Lorem ipsum dolor');
 
+        $form = $this->createFormBuilder($post)
+            ->add('title', 'text')
+            ->add('slug', 'submit')
+            ->add('description', 'submit')
+            ->add('save', 'submit')
+            ->getForm();
+
+        return $this->render('post/new.html.twig', array(
+            'form' => $form->creteView(),
+        ));
+
         $validator = $this->get('validator');
         $errors = $validator->validate($post, null, array('edit'));
 
-        if(count($errors > 0)){
+        if(count($errors) > 0){
             $errorsString = (string) $errors;
             return new Response($errorsString);
         }
