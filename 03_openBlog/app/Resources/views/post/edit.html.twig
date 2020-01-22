@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Nuevo artículos{% endblock %}
+{% block title %}Lista de artículos{% endblock %}
 
 {% block content %}
-    <h2>Añadir </h2>
+    <h2>Editar {{post.title}}</h2>
 
     {{ form(form) }}
 {% endblock %}
