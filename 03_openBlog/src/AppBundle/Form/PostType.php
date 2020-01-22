@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Entity\Category;
 
 class PostType extends AbstractType
 {
@@ -30,7 +31,7 @@ class PostType extends AbstractType
             // ->add('regDate')
             // ->add('modDate')
             // ->add('user')
-            ->add('categories', CategoryType::class)
+            ->add('categories')
             ->add('save', SubmitType::class);
     }/**
      * {@inheritdoc}

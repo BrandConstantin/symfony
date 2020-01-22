@@ -21,7 +21,12 @@ class PostController extends Controller
 
         $posts = $postRepository->findAll();
 
+        $title = 'Post List';
+        $number = 1;
         return $this->render('post/list.html.twig', array(
+            'locale' => $locale,
+            'count' => $number,
+            'title' => $title,
             'posts' => $posts
         ));
     }
@@ -47,6 +52,12 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Se ha creado un nuevo objeto.'
+            );
+
             return $this->redirect($this->generateUrl('list'));
         }
 
@@ -85,10 +96,34 @@ class PostController extends Controller
      */
     public function editAction(Request $request, $id)
     {
-       $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
 
-       $post = $postRepository->find($id);
-       return new Response('Post for edit with slug '.$post->getSlug());
+        $post = $postRepository->find($id);
+        
+        $form = $this->createForm(PostType::class, $post, array());
+
+        $form->handleRequest($request);
+
+        $formData = $form->getData();
+        $date = $form['dueDate']->getData();
+       
+       if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Se ha eidtado el objeto.'
+            );
+
+            return $this->redirect($this->generateUrl('list'));
+        }
+
+        return $this->render('post/edit.html.twig', array(
+            'post' => $post,
+            'form' => $form->createView(),
+        ));
     }
 
     /**
