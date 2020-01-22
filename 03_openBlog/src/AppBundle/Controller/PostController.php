@@ -21,7 +21,12 @@ class PostController extends Controller
 
         $posts = $postRepository->findAll();
 
+        $title = 'Post List';
+        $number = 1;
         return $this->render('post/list.html.twig', array(
+            'locale' => $locale,
+            'count' => $number,
+            'title' => $title,
             'posts' => $posts
         ));
     }
