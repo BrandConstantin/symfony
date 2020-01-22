@@ -353,4 +353,28 @@ class Post
     {
         $this->modDate = new \DateTime();
     }
+
+    /**
+     * Set modDate
+     *
+     * @param \DateTime $modDate
+     *
+     * @return Post
+     */
+    public function setModDate($modDate)
+    {
+        $this->modDate = $modDate;
+
+        return $this;
+    }
+
+    /**
+     * Get modDate
+     *
+     * @return \DateTime
+     */
+    public function getModDate()
+    {
+        return $this->modDate;
+    }
 }

@@ -30,7 +30,7 @@ class PostType extends AbstractType
             // ->add('regDate')
             // ->add('modDate')
             // ->add('user')
-            // ->add('categories')
+            ->add('categories', CategoryType::class)
             ->add('save', SubmitType::class);
     }/**
      * {@inheritdoc}

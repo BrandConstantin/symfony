@@ -20,7 +20,10 @@ class PostController extends Controller
         $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
 
         $posts = $postRepository->findAll();
-        return new Response('List ');
+
+        return $this->render('post/list.html.twig', array(
+            'posts' => $posts
+        ));
     }
 
     /**

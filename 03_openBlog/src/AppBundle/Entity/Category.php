@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -20,6 +21,15 @@ class Category
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     * @Assert\NotBlank())
+     * @Assert\Length(max="255")
+     *
+     * @ORM\Column(name="new", type="string", length=255)
+     */
+    private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity="Post", mappedBy="categories")
@@ -72,5 +82,33 @@ class Category
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function __toString(){
+        return (String) $this->name;
     }
 }
