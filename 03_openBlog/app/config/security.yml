@@ -50,4 +50,4 @@ security:
                   login_path: login
                   check_path: login
             logout: ~
-            # provider: our_db_provider
+            provider: our_db_provider

@@ -125,27 +125,27 @@ class Post
 
 
     /**
-     * Set regdate
+     * Set regDate
      *
-     * @param string $regdate
+     * @param string $regDate
      *
      * @return Post
      */
-    public function setRegdate($regdate)
+    public function setregDate($regDate)
     {
-        $this->regdate = $regdate;
+        $this->regDate = $regDate;
 
         return $this;
     }
 
     /**
-     * Get regdate
+     * Get regDate
      *
      * @return string
      */
-    public function getRegdate()
+    public function getregDate()
     {
-        return $this->regdate;
+        return $this->regDate;
     }
 
     /**
