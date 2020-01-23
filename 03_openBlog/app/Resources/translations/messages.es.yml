@@ -1,0 +1,9 @@
+Post List: Lista de Articulitos
+
+'Hello %name%': Hola %name%
+
+symfony.great: Me encanta Symfony 3
+form:
+    email:
+        label:
+        placeholder:
