@@ -24,3 +24,29 @@
 - Query Builder
 - Formularios
 - Validar formularios
+
+##Curso Symfony con annotation##
+- Rutas
+- Controladores
+- Respuestas
+- Entidades
+- Relaciones entidades
+- Carga entidades
+- CRUD
+- Objetos
+- Persistencia datos
+- Validaciones de entidades 
+- Validaciones getters/setters
+- Grupos de validación
+- Sercicio validador
+- Formularios
+- Embeber otro formulario
+- Mensaje Flush
+- Sonata Admin
+- POST
+- Servicios
+- Autenticación Usuarios
+- Seguridad BBDD
+- Control acceso
+- Entornos
+- Internalización 
