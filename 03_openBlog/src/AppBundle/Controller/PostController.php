@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
-use AppBundle\Services\Mailer;
+use AppBundle\Services\SendMail;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostController extends Controller
@@ -114,7 +114,7 @@ class PostController extends Controller
             $em->flush();
 
             //envio de email
-            /** @var Mailer $mailer */
+            /** @var SendMail $mailer */
             $mailer = $this->get('my_mailer');
             $mailer->sendEmailAction();
 
