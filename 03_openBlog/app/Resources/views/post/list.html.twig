@@ -11,7 +11,8 @@
         {% endfor %}
     {% endfor %}
 
-    <h2>Lista de artículos</h2><a href="{{ path('post_new') }}">Añadir nuevo articulo</a>
+    <h2>{% trans with {'%name%': 'Fabien'} %}Hello %name%{% endtrans %}, {% trans %}symfony.great{% endtrans %}</h2>
+    Locale = {{ locale }}
     {% if is_granted('ROLE_USER') %}
         <a href="{{ path('post_new') }}">Crear Nuevo</a>
     {% endif %}

@@ -22,11 +22,21 @@ class PostController extends Controller
 
         $posts = $postRepository->findAll();
 
-        $title = 'Post List';
-        $number = 1;
+        $name = 'Lista';
+        $translator = $this->get('translator');
+        $title = $translator->trans(
+            'Hello %name%',
+            array('%name%' => $name)
+        );
+
+        $request->setLocale('en_US'); //forzar para cambiar de idioma
+        $locale = $request->getLocale();
+
+        // $title = 'Post List';
+        // $number = 1;
         return $this->render('post/list.html.twig', array(
             'locale' => $locale,
-            'count' => $number,
+            // 'count' => $number,
             'title' => $title,
             'posts' => $posts
         ));

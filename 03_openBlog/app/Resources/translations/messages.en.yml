@@ -1,0 +1,7 @@
+symfony:
+  great: I love Symfony 3
+
+form:
+    email:
+        label:
+        placeholder:
