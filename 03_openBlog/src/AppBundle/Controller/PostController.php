@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
+use AppBundle\Services\Mailer;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostController extends Controller
@@ -111,6 +112,11 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+
+            //envio de email
+            /** @var Mailer $mailer */
+            $mailer = $this->get('my_mailer');
+            $mailer->sendEmailAction();
 
             $this->get('session')->getFlashBag()->add(
                 'success',
