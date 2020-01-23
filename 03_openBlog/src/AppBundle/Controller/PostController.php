@@ -37,6 +37,10 @@ class PostController extends Controller
      */
     public function newAction(Request $request)
     {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+        
         $post = new Post();
 
         $form = $this->createForm(PostType::class, $post, array(

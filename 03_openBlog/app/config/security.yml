@@ -1,6 +1,11 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    # access_control:
+    #     - { path: ^/admin, roles: ROLE_USER_IP, ip: 127.0.0.1 }
+    #     - { path: ^/admin, roles: ROLE_USER_HOST, host: symfony.com }
+    #     - { path: ^/admin, roles: ROLE_USER_METHOD, methods: [POST, PUT] }
+    #     - { path: ^/admin, roles: ROLE_USER}
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
 
